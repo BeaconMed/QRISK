@@ -134,6 +134,34 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
 
+        .risk-link.active {
+            background: #1e40af;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .icon-array-container {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .icon-array-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 1rem 0;
+        }
+
+        .icon-array-caption {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
         .lifestyle-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -360,18 +388,24 @@
             <div class="risk-calculator">
                 <h3>Compare benefits by risk score:</h3>
                 <div class="risk-links">
-                    <a href="#" class="risk-link" onclick="showRisk(5); return false;">5%</a>
-                    <a href="#" class="risk-link" onclick="showRisk(10); return false;">10%</a>
-                    <a href="#" class="risk-link" onclick="showRisk(15); return false;">15%</a>
-                    <a href="#" class="risk-link" onclick="showRisk(20); return false;">20%</a>
-                    <a href="#" class="risk-link" onclick="showRisk(25); return false;">25%</a>
-                    <a href="#" class="risk-link" onclick="showRisk(30); return false;">30%</a>
-                    <a href="#" class="risk-link" onclick="showRisk(35); return false;">35%</a>
-                    <a href="#" class="risk-link" onclick="showRisk(40); return false;">40%</a>
+                    <a href="#" class="risk-link" data-risk="5" onclick="showRisk(5); return false;">5%</a>
+                    <a href="#" class="risk-link" data-risk="10" onclick="showRisk(10); return false;">10%</a>
+                    <a href="#" class="risk-link" data-risk="15" onclick="showRisk(15); return false;">15%</a>
+                    <a href="#" class="risk-link" data-risk="20" onclick="showRisk(20); return false;">20%</a>
+                    <a href="#" class="risk-link" data-risk="25" onclick="showRisk(25); return false;">25%</a>
+                    <a href="#" class="risk-link" data-risk="30" onclick="showRisk(30); return false;">30%</a>
+                    <a href="#" class="risk-link" data-risk="35" onclick="showRisk(35); return false;">35%</a>
+                    <a href="#" class="risk-link" data-risk="40" onclick="showRisk(40); return false;">40%</a>
                 </div>
-                <div id="riskResult" style="margin-top: 1.5rem; padding: 1.5rem; background: white; border-radius: 8px; text-align: center; display: none;">
-                    <h3 style="margin-top: 0; color: var(--primary-color);">Benefit Calculator</h3>
-                    <p id="riskText" style="font-size: 1.125rem; font-weight: 600;"></p>
+
+                <div id="riskResult" class="icon-array-container" style="display: none;">
+                    <h3 style="margin-top: 0; color: var(--primary-color);">Benefit Visualisation</h3>
+                    <p id="riskText" style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;"></p>
+
+                    <!-- Icon array image - replace the src URL with your actual image URLs -->
+                    <img id="iconArrayImage" src="PLACEHOLDER-IMAGE-URL-HERE" alt="Icon array showing statin benefit" class="icon-array-image">
+
+                    <p class="icon-array-caption">Each figure represents one person. Highlighted figures show those who benefit from taking a statin.</p>
                 </div>
             </div>
 
@@ -537,6 +571,18 @@
     </footer>
 
     <script>
+        // Image URLs for each risk level - REPLACE THESE WITH YOUR ACTUAL IMAGE URLS
+        const iconArrayImages = {
+            5: 'https://your-domain.com/images/icon-array-5.png',
+            10: 'https://your-domain.com/images/icon-array-10.png',
+            15: 'https://your-domain.com/images/icon-array-15.png',
+            20: 'https://your-domain.com/images/icon-array-20.png',
+            25: 'https://your-domain.com/images/icon-array-25.png',
+            30: 'https://your-domain.com/images/icon-array-30.png',
+            35: 'https://your-domain.com/images/icon-array-35.png',
+            40: 'https://your-domain.com/images/icon-array-40.png'
+        };
+
         // Accordion functionality
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => {
@@ -560,9 +606,22 @@
             const benefitPerHundred = Math.round((riskPercent / 10) * 4);
             const resultDiv = document.getElementById('riskResult');
             const textDiv = document.getElementById('riskText');
+            const imageElement = document.getElementById('iconArrayImage');
 
+            // Update text
             textDiv.innerHTML = `At <strong>${riskPercent}% baseline risk</strong>, approximately <strong>${benefitPerHundred} out of 100 people</strong> taking a statin for 10 years will avoid a cardiovascular event.`;
 
+            // Update image source
+            imageElement.src = iconArrayImages[riskPercent];
+            imageElement.alt = `Icon array showing ${benefitPerHundred} out of 100 people benefiting from statin at ${riskPercent}% risk`;
+
+            // Update active button state
+            document.querySelectorAll('.risk-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[data-risk="${riskPercent}"]`).classList.add('active');
+
+            // Show result
             resultDiv.style.display = 'block';
             resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
