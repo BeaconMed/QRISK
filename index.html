@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Your Heart Health Risk (QRISK) | Beacon Medical Group</title>
+    <meta name="description" content="Learn about your cardiovascular disease risk and how to reduce it through lifestyle changes and medication.">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #dc2626;
+            --accent-color: #059669;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.875rem;
+        }
+
+        .card h3 {
+            color: var(--text-dark);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box strong {
+            color: #92400e;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .risk-calculator {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .risk-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .risk-link {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .risk-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .lifestyle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .lifestyle-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-top: 4px solid var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .lifestyle-card h3 {
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #1e40af;
+        }
+
+        .btn-secondary {
+            background: var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background: #047857;
+        }
+
+        .side-effects {
+            margin: 1.5rem 0;
+        }
+
+        .side-effect-item {
+            padding: 1rem;
+            margin: 0.75rem 0;
+            background: var(--bg-light);
+            border-radius: 6px;
+        }
+
+        .side-effect-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .bp-target {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .bp-target strong {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #047857 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .resources {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .resources ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resources li {
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            background: var(--bg-light);
+            border-radius: 6px;
+        }
+
+        .resources a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .resources a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .risk-links {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .lifestyle-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .accordion {
+            margin: 1rem 0;
+        }
+
+        .accordion-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .accordion-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background: #1e40af;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--bg-light);
+            border-radius: 0 0 8px 8px;
+        }
+
+        .accordion-content-inner {
+            padding: 1.5rem;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
+        }
+
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            transition: transform 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>💙 Understanding Your Heart Health Risk</h1>
+        <p>Evidence-based guidance on cardiovascular disease prevention and treatment options</p>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h2>What is QRISK?</h2>
+            <p>QRISK is an estimate of how likely you are to have a heart attack or stroke in the next 10 years. It considers multiple factors including age, cholesterol, blood pressure, and other health markers.</p>
+
+            <div class="highlight-box">
+                <strong>Important:</strong> The cholesterol value itself is not that important – it's the combination of cholesterol and many other factors that determine your risk.
+            </div>
+
+            <p>NICE (the National Institute for Health and Care Excellence) generally advises cholesterol-lowering medication (atorvastatin 20mg) if your QRISK is above 10%.</p>
+        </div>
+
+        <div class="card">
+            <h2>Do I "need" to take a statin?</h2>
+            <p>Not everyone who takes a statin will benefit from it, so it's a personal choice based on your preferences, weighing potential benefits and risks according to your QRISK score.</p>
+
+            <h3>Understanding the numbers (10% risk example)</h3>
+            <div class="success-box">
+                <strong>If 100 people with a 10% baseline risk take a statin for 10 years, 4 will avoid a cardiovascular event compared with if they hadn't taken a statin.</strong>
+            </div>
+
+            <p>The higher your baseline risk, the greater the potential benefit. At 15% risk, 6 people out of 100 will avoid an event. At 20% risk, 8 people will benefit.</p>
+
+            <div class="risk-calculator">
+                <h3>Compare benefits by risk score:</h3>
+                <div class="risk-links">
+                    <a href="#" class="risk-link" onclick="showRisk(5); return false;">5%</a>
+                    <a href="#" class="risk-link" onclick="showRisk(10); return false;">10%</a>
+                    <a href="#" class="risk-link" onclick="showRisk(15); return false;">15%</a>
+                    <a href="#" class="risk-link" onclick="showRisk(20); return false;">20%</a>
+                    <a href="#" class="risk-link" onclick="showRisk(25); return false;">25%</a>
+                    <a href="#" class="risk-link" onclick="showRisk(30); return false;">30%</a>
+                    <a href="#" class="risk-link" onclick="showRisk(35); return false;">35%</a>
+                    <a href="#" class="risk-link" onclick="showRisk(40); return false;">40%</a>
+                </div>
+                <div id="riskResult" style="margin-top: 1.5rem; padding: 1.5rem; background: white; border-radius: 8px; text-align: center; display: none;">
+                    <h3 style="margin-top: 0; color: var(--primary-color);">Benefit Calculator</h3>
+                    <p id="riskText" style="font-size: 1.125rem; font-weight: 600;"></p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>Remember:</strong> If you take a tablet and get a side effect, you can generally stop the tablet or try an alternative and the side effect disappears. If you have a heart attack or stroke, you can end up with permanent disability or death.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Ways to Lower Your Risk</h2>
+
+            <div class="lifestyle-grid">
+                <div class="lifestyle-card">
+                    <div class="icon">🚭</div>
+                    <h3>Stop Smoking</h3>
+                    <p>Smoking is the single biggest modifiable risk factor for heart attacks, strokes, cancer and premature death.</p>
+                    <a href="https://www.nhs.uk/better-health/quit-smoking/" class="btn" target="_blank">Get Help to Quit</a>
+                </div>
+
+                <div class="lifestyle-card">
+                    <div class="icon">🩺</div>
+                    <h3>Control Blood Pressure</h3>
+                    <p>Treating high blood pressure can have a major impact on your risk of ill health.</p>
+                    <div class="bp-target">
+                        <p><strong>Your BP Target:</strong></p>
+                        <p>Under 80: <strong>135/85 mmHg</strong></p>
+                        <p>Over 80: <strong>145/85 mmHg</strong></p>
+                        <p style="font-size: 0.875rem; margin-top: 0.5rem;">(when checking at home)</p>
+                    </div>
+                </div>
+
+                <div class="lifestyle-card">
+                    <div class="icon">🥗</div>
+                    <h3>Eat Healthily</h3>
+                    <p>Diet is far more important than exercise for weight loss. Simple changes can make a huge difference:</p>
+                    <ul style="margin-top: 0.75rem; padding-left: 1.25rem;">
+                        <li>Switch toast/cereals to fresh fruit</li>
+                        <li>Choose salads over sandwiches</li>
+                        <li>Reduce potatoes, rice, and pasta</li>
+                    </ul>
+                    <a href="https://www.oneyouplymouth.co.uk/lose-weight" class="btn btn-secondary" target="_blank">Weight Support (Plymouth)</a>
+                    <a href="https://www.nhs.uk/better-health/" class="btn btn-secondary" target="_blank">Better Health (Devon)</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>💊 About Atorvastatin</h2>
+            <p>Atorvastatin is a medication that lowers cholesterol and, more importantly, reduces your risk of heart attacks and strokes. The higher your QRISK, the more benefit you'll get from taking a statin.</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Muscle Ache – Common but probably not the statin!
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Statins have had some bad press regarding muscle aches, but the evidence tells a different story.</p>
+                            <div class="highlight-box">
+                                <p>The ASCOT trial with over 10,000 people found:</p>
+                                <ul>
+                                    <li><strong>2.03%</strong> of those taking atorvastatin developed muscular pains</li>
+                                    <li><strong>2.00%</strong> of those taking placebo developed muscular pains</li>
+                                </ul>
+                                <p><strong>Result:</strong> No statistically significant link between statins and muscular pain.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Liver Changes
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>About 3% of people may experience a rise in liver enzymes on blood tests. This is generally not harmful and may be linked to removing fat from the liver (a good thing!).</p>
+                            <p>Only 1 in 1,100 people have an ongoing rise in liver tests, and about 1 in 100-200 people have to stop due to liver problems (rarely serious).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Diabetes Risk
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Statins can increase blood sugars and the risk of type 2 diabetes, but this generally only affects people who already have raised sugars (pre-diabetes).</p>
+                            <p><strong>Important:</strong> Even for people with diabetes, we still recommend statins because the benefits of preventing heart attacks and strokes outweigh the risks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        What if I get side effects?
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>If you experience side effects, stop the statin and the symptoms are likely to resolve.</p>
+                            <div class="success-box">
+                                <p><strong>Tip:</strong> If you get minor symptoms (tummy ache, muscle pains), they may not be related to the statin. Try this:</p>
+                                <ol style="padding-left: 1.25rem; margin-top: 0.75rem;">
+                                    <li>Stop the statin for one month</li>
+                                    <li>Restart it</li>
+                                    <li>If symptoms recur, it's likely a true side effect</li>
+                                </ol>
+                            </div>
+                            <p>If unsure, please contact us for a review.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🔬 Do I need monitoring?</h2>
+            <p>You'll need blood tests to check liver function at:</p>
+            <ul style="padding-left: 1.5rem; margin: 1rem 0;">
+                <li><strong>3 months</strong> after starting atorvastatin</li>
+                <li><strong>12 months</strong> after starting atorvastatin</li>
+            </ul>
+            <p>It's worth checking your cholesterol (full lipid profile) once after starting treatment. Beyond that, there's no benefit in monitoring your cholesterol or QRISK further.</p>
+        </div>
+
+        <div class="cta-section">
+            <h2>📋 Next Steps</h2>
+            <p style="font-size: 1.125rem; margin-bottom: 1.5rem;">We recommend considering atorvastatin, but haven't prescribed it yet. You should have received a questionnaire to let us know if you want to:</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+                <span style="background: rgba(255,255,255,0.2); padding: 1rem 1.5rem; border-radius: 8px; font-weight: 600;">✓ Take a statin</span>
+                <span style="background: rgba(255,255,255,0.2); padding: 1rem 1.5rem; border-radius: 8px; font-weight: 600;">○ Decline for now</span>
+                <span style="background: rgba(255,255,255,0.2); padding: 1rem 1.5rem; border-radius: 8px; font-weight: 600;">💬 Discuss further</span>
+            </div>
+            <p style="margin-top: 1.5rem;">You can change your mind at any time.</p>
+        </div>
+
+        <div class="card resources">
+            <h2>📚 Useful Resources</h2>
+            <ul>
+                <li>
+                    <a href="https://www.bhf.org.uk/informationsupport/risk-factors/high-cholesterol" target="_blank">
+                        British Heart Foundation: High Cholesterol Information
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.nice.org.uk/guidance/cg181/resources/patient-decision-aid-pdf-243780159" target="_blank">
+                        NICE: Should I take a statin? Patient Decision Aid
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.nhs.uk/conditions/high-cholesterol/" target="_blank">
+                        NHS: High Cholesterol Guide
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Beacon Medical Group</strong></p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">This information is for educational purposes. Always consult with your healthcare provider for personalized medical advice.</p>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+
+                // Close all accordion items
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Risk calculator
+        function showRisk(riskPercent) {
+            const benefitPerHundred = Math.round((riskPercent / 10) * 4);
+            const resultDiv = document.getElementById('riskResult');
+            const textDiv = document.getElementById('riskText');
+
+            textDiv.innerHTML = `At <strong>${riskPercent}% baseline risk</strong>, approximately <strong>${benefitPerHundred} out of 100 people</strong> taking a statin for 10 years will avoid a cardiovascular event.`;
+
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
